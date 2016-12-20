@@ -25,7 +25,19 @@ public class Book {
         return year_published;
     }
 
-    public String getBookDetails(){
-        return title + " " + author + " " + year_published;
+    public String getBookDetails(){ return title + " " + author + " " + year_published; }
+
+    public boolean checkOut(){
+        if (isCheckOut){
+            return false;
+        }
+        else{
+            isCheckOut = true;
+            return true;
+        }
+    }
+
+    public boolean isCheckOut(){
+        return isCheckOut;
     }
 }

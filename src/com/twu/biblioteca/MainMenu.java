@@ -12,10 +12,11 @@ public class MainMenu {
 
     public String getMenu() {
         StringBuilder text = new StringBuilder();
+        int index = 0;
         text.append("Menu:\n");
         for (String item:menuItems
              ) {
-            text.append(item).append("\n");
+            text.append(index+1).append(". ").append(item).append("\n");
         }
         text.append("Choose an Option:\n");
         return text.toString();

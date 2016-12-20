@@ -34,8 +34,5 @@ public class MainMenuTest {
     public void should_check_valid_choice() throws Exception{
         assertThat(menu.isValidOption(1),is(true));
     }
-    @Test
-    public void should_quit_when_choose_quit() throws Exception{
 
-    }
 }
