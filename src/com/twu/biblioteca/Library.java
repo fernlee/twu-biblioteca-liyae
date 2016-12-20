@@ -27,6 +27,9 @@ public class Library {
         else if (option == 2){
             check_out_book(consoleHelper.getInput());
         }
+        else if (option == 3){
+            return_book(consoleHelper.getInput());
+        }
 
     }
     public void check_out_book(String title){
@@ -38,6 +41,17 @@ public class Library {
             }
         }
         consoleHelper.println("That book is not available.");
+    }
+
+    public void return_book(String title){
+        for (Book book:books
+                ) {
+            if (book.getTitle().equals(title) && (book.returnBook())){
+                consoleHelper.println("Thank you for returning the book.");
+                return;
+            }
+        }
+        consoleHelper.println("That is not a valid book to return.");
     }
 
     private void print_book_list(){

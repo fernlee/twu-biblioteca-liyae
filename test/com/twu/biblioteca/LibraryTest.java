@@ -23,6 +23,7 @@ public class LibraryTest {
         menuItems = new ArrayList<String>();
         menuItems.add("List books");
         menuItems.add("Check out a book");
+        menuItems.add("Return a book");
         menu = new MainMenu(menuItems);
 
         consoleHelper = new ConsoleHelper();
@@ -54,6 +55,28 @@ public class LibraryTest {
         consoleHelper.setInput("book4");
         library.excuteOptions(2);
         assertThat(consoleHelper.getOutput(),containsString("That book is not available."));
+    }
+    @Test
+    public void should_not_check_out_book_when_checked() throws Exception{
+        consoleHelper.setInput("book1");
+        library.excuteOptions(2);
+        consoleHelper.setInput("book1");
+        library.excuteOptions(2);
+        assertThat(consoleHelper.getOutput(),containsString("That book is not available."));
+    }
+    @Test
+    public void should_return_book() throws Exception{
+        consoleHelper.setInput("book1");
+        library.excuteOptions(2);
+        consoleHelper.setInput("book1");
+        library.excuteOptions(3);
+        assertThat(consoleHelper.getOutput(),containsString("Thank you for returning the book."));
+    }
+    @Test
+    public void should_notify_invalid_book() throws Exception{
+        consoleHelper.setInput("book4");
+        library.excuteOptions(3);
+        assertThat(consoleHelper.getOutput(),containsString("That is not a valid book to return."));
     }
 
 

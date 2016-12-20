@@ -28,13 +28,18 @@ public class Book {
     public String getBookDetails(){ return title + " " + author + " " + year_published; }
 
     public boolean checkOut(){
-        if (isCheckOut){
-            return false;
-        }
+        if (isCheckOut) return false;
         else{
             isCheckOut = true;
             return true;
         }
+    }
+    public boolean returnBook(){
+        if (isCheckOut){
+            isCheckOut = false;
+            return true;
+        }
+        else return true;
     }
 
     public boolean isCheckOut(){
