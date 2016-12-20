@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.core.StringContains.containsString;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
 
 public class MainMenuTest {
@@ -20,7 +20,7 @@ public class MainMenuTest {
     }
     @Test
     public void should_print_options() throws Exception{
-        String menuText = menu.showMenu();
+        String menuText = menu.getMenu();
         for (String item:menuItems
              ) {
             assertThat(menuText,containsString(item));
@@ -33,5 +33,9 @@ public class MainMenuTest {
     @Test
     public void should_check_valid_choice() throws Exception{
         assertThat(menu.isValidOption(1),is(true));
+    }
+    @Test
+    public void should_quit_when_choose_quit() throws Exception{
+
     }
 }
