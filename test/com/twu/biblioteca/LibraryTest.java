@@ -11,7 +11,7 @@ public class LibraryTest {
     private ArrayList<Book> books;
     private MainMenu menu;
     private ArrayList<String> menuItems;
-    private ConsoleHelper consoleHelper;
+    private ConsoleTestHelper consoleTestHelper;
     private Library library;
     @Before
     public void setup(){
@@ -26,14 +26,14 @@ public class LibraryTest {
         menuItems.add("Return a book");
         menu = new MainMenu(menuItems);
 
-        consoleHelper = new ConsoleHelper();
+        consoleTestHelper = new ConsoleTestHelper();
 
-        library = new Library(books,menu,consoleHelper);
+        library = new Library(menu,books, consoleTestHelper);
     }
     @Test
     public void should_quit() throws Exception{
         library.excuteOptions(menuItems.size());
-        assertThat(consoleHelper.getOutput(),containsString("Quit"));
+        assertThat(consoleTestHelper.getOutput(),containsString("Quit"));
 
     }
     @Test
@@ -41,42 +41,42 @@ public class LibraryTest {
         library.excuteOptions(1);
         for (Book book:books
              ) {
-            assertThat(consoleHelper.getOutput(),containsString(book.getBookDetails()));
+            assertThat(consoleTestHelper.getOutput(),containsString(book.getBookDetails()));
         }
     }
     @Test
     public void should_check_out_book() throws Exception{
-        consoleHelper.setInput("book1");
+        consoleTestHelper.setInput("book1");
         library.excuteOptions(2);
-        assertThat(consoleHelper.getOutput(),containsString("Thank you! Enjoy the book"));
+        assertThat(consoleTestHelper.getOutput(),containsString("Thank you! Enjoy the book"));
     }
     @Test
     public void should_not_check_out_book() throws Exception{
-        consoleHelper.setInput("book4");
+        consoleTestHelper.setInput("book4");
         library.excuteOptions(2);
-        assertThat(consoleHelper.getOutput(),containsString("That book is not available."));
+        assertThat(consoleTestHelper.getOutput(),containsString("That book is not available."));
     }
     @Test
     public void should_not_check_out_book_when_checked() throws Exception{
-        consoleHelper.setInput("book1");
+        consoleTestHelper.setInput("book1");
         library.excuteOptions(2);
-        consoleHelper.setInput("book1");
+        consoleTestHelper.setInput("book1");
         library.excuteOptions(2);
-        assertThat(consoleHelper.getOutput(),containsString("That book is not available."));
+        assertThat(consoleTestHelper.getOutput(),containsString("That book is not available."));
     }
     @Test
     public void should_return_book() throws Exception{
-        consoleHelper.setInput("book1");
+        consoleTestHelper.setInput("book1");
         library.excuteOptions(2);
-        consoleHelper.setInput("book1");
+        consoleTestHelper.setInput("book1");
         library.excuteOptions(3);
-        assertThat(consoleHelper.getOutput(),containsString("Thank you for returning the book."));
+        assertThat(consoleTestHelper.getOutput(),containsString("Thank you for returning the book."));
     }
     @Test
     public void should_notify_invalid_book() throws Exception{
-        consoleHelper.setInput("book4");
+        consoleTestHelper.setInput("book4");
         library.excuteOptions(3);
-        assertThat(consoleHelper.getOutput(),containsString("That is not a valid book to return."));
+        assertThat(consoleTestHelper.getOutput(),containsString("That is not a valid book to return."));
     }
 
 

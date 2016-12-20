@@ -1,34 +1,40 @@
 package com.twu.biblioteca;
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Library {
-    private ArrayList<Book> books;
     private MainMenu mainMenu;
-    private ConsoleHelper consoleHelper;
+    private ArrayList<Book> books;
+    private ConsoleWrapper console;
 
-    public Library(ArrayList<Book> books, MainMenu mainMenu, ConsoleHelper consoleHelper) {
+    public Library( MainMenu mainMenu, ArrayList<Book> books, ConsoleWrapper consoleTestHelper) {
         this.books = books;
-        this.consoleHelper = consoleHelper;
+        this.console= consoleTestHelper;
         this.mainMenu = mainMenu;
     }
 
-    public void excuteOptions(int option){
+    public void welcome(){
+        console.println("Welcome to Biblioteca!");
+    }
+
+    public void excuteOptions(int option) throws IOException{
         if (!mainMenu.isValidOption(option)){
-            consoleHelper.println("Select a valid option!");
+            console.println("Select a valid option!");
         }
         if (option == mainMenu.getNumberOfOptions()){
-            consoleHelper.println("Quit");
+            console.println("Quit");
+            System.exit(0);
         }
         else if (option == 1){
             print_book_list();
         }
         else if (option == 2){
-            check_out_book(consoleHelper.getInput());
+            check_out_book(console.getInput());
         }
         else if (option == 3){
-            return_book(consoleHelper.getInput());
+            return_book(console.getInput());
         }
 
     }
@@ -36,28 +42,28 @@ public class Library {
         for (Book book:books
              ) {
             if (book.getTitle().equals(title) && (book.checkOut())){
-                consoleHelper.println("Thank you! Enjoy the book");
+                console.println("Thank you! Enjoy the book");
                 return;
             }
         }
-        consoleHelper.println("That book is not available.");
+        console.println("That book is not available.");
     }
 
     public void return_book(String title){
         for (Book book:books
                 ) {
             if (book.getTitle().equals(title) && (book.returnBook())){
-                consoleHelper.println("Thank you for returning the book.");
+                console.println("Thank you for returning the book.");
                 return;
             }
         }
-        consoleHelper.println("That is not a valid book to return.");
+        console.println("That is not a valid book to return.");
     }
 
     private void print_book_list(){
         for (Book book:books
              ) {
-            if (!book.isCheckOut()) consoleHelper.println(book.getBookDetails());
+            if (!book.isCheckOut()) console.println(book.getBookDetails());
         }
     }
 

@@ -17,6 +17,7 @@ public class MainMenu {
         for (String item:menuItems
              ) {
             text.append(index+1).append(". ").append(item).append("\n");
+            index++;
         }
         text.append("Choose an Option:\n");
         return text.toString();
