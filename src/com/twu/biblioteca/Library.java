@@ -14,6 +14,7 @@ public class Library {
     private boolean isLogin;
     private CheckOutInfo checkOutInfo;
 
+
     public Library(MainMenu mainMenu, ArrayList<Publication> books, ArrayList<Publication> movies, ArrayList<UserAccount> users, ConsoleWrapper consoleTestHelper) {
         this.books = books;
         this.movies = movies;
@@ -116,11 +117,11 @@ public class Library {
                 ) {
             if (pub.getName().equals(title) && (pub.returnToLib())){
                 checkOutInfo.returnItem(pub);
-                console.println("Thank you for returning the" + type);
+                console.println("Thank you for returning the " + type + ".");
                 return;
             }
         }
-        console.println("That is not a valid" + type + "to return.");
+        console.println("That is not a valid " + type + " to return.");
     }
 
     private void print_list(ArrayList<Publication> publications) {

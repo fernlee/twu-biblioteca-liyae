@@ -142,11 +142,6 @@ public class LibraryTest {
         library.excuteOptions(6);
         assertThat(consoleTestHelper.getOutput(),containsString("Please login to check and return books"));
     }
-    @Test
-    public void should_quit() throws Exception{
-        library.excuteOptions(menuItems.size());
-        assertThat(consoleTestHelper.getOutput(),containsString("Quit"));
-    }
 
 
 }
