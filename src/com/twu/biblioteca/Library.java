@@ -8,17 +8,30 @@ public class Library {
     private MainMenu mainMenu;
     private ArrayList<Publication> books;
     private ArrayList<Publication> movies;
+    private ArrayList<UserAccount> users;
     private ConsoleWrapper console;
 
-    public Library(MainMenu mainMenu, ArrayList<Publication> books, ArrayList<Publication> movies, ConsoleWrapper consoleTestHelper) {
+    public Library(MainMenu mainMenu, ArrayList<Publication> books, ArrayList<Publication> movies, ArrayList<UserAccount> users, ConsoleWrapper consoleTestHelper) {
         this.books = books;
         this.movies = movies;
+        this.users = users;
         this.console= consoleTestHelper;
         this.mainMenu = mainMenu;
     }
 
     public void welcome(){
         console.println("Welcome to Biblioteca!");
+    }
+
+    public boolean login() throws IOException {
+        console.println("Please log in with the format xxx-xxxx!");
+        String str[] = console.getInput().split("-");
+        String libnum = str[0];
+        String pwd = str[1];
+        for (UserAccount user:users){
+            if(user.isAuthentic(libnum,pwd)) return true;
+        }
+        return false;
     }
 
     public void excuteOptions(int option) throws IOException{
@@ -49,6 +62,7 @@ public class Library {
 
 
     private void check_out(String title, ArrayList<Publication> publications) {
+        if
         String type = publications.get(0).getType();
         for (Publication pub: publications
              ) {
@@ -78,6 +92,8 @@ public class Library {
             if (!pub.isCheckOut()) console.println(pub.getDetails());
         }
     }
+
+
 
 
 }

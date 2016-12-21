@@ -10,8 +10,9 @@ public class BibliotecaApp {
         MainMenu menu = initMenu();
         ArrayList<Publication> books = initBooks();
         ArrayList<Publication> movies = initMovies();
+        ArrayList<UserAccount> users = initUsers();
         ConsoleHelper consoleTestHelper = new ConsoleHelper();
-        Library library = new Library(menu,books, movies, consoleTestHelper);
+        Library library = new Library(menu,books, movies, users, consoleTestHelper);
         int option = 0;
         library.welcome();
         System.out.println(menu.getMenu());
@@ -45,6 +46,12 @@ public class BibliotecaApp {
         movies.add(new Movie("movie2","2","d2",5));
         movies.add(new Movie("movie3","3","d3",4));
         return movies;
+    }
+
+    private static ArrayList<UserAccount> initUsers(){
+        ArrayList<UserAccount> users = new ArrayList<UserAccount>();
+        users.add(new UserAccount("123","abcd"));
+        return users;
     }
 
 }
