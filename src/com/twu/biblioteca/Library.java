@@ -43,6 +43,12 @@ public class Library {
         return isLogin;
     }
 
+    public void logout() throws Exception{
+        currentUser = null;
+        isLogin = false;
+        console.println("User has log out");
+    }
+
     public void excuteOptions(int option) throws IOException{
         if (!mainMenu.isValidOption(option)){
             console.println("Select a valid option!");
@@ -65,6 +71,9 @@ public class Library {
             } else if (option == 5) {
                 check_out(console.getInput(), movies);
             }
+            else if (option == 6){
+               show_user_info();
+           }
         }
         else console.println("Please login to check and return books");
 
@@ -77,7 +86,9 @@ public class Library {
     public CheckOutInfo getCheckOutInfo(){
         return checkOutInfo;
     }
-
+    private void show_user_info(){
+       console.println(currentUser.getUserInfo());
+    }
     private void check_out(String title, ArrayList<Publication> publications) {
         String type = publications.get(0).getType();
         for (Publication pub: publications

@@ -18,7 +18,7 @@ public class LibraryTest {
     private Library library;
     private CheckOutInfo checkOutInfo;
     @Before
-    public void setup(){
+    public void setup() throws Exception{
         books = new ArrayList<Publication>();
         books.add(new Book("book1","a1","1"));
         books.add(new Book("book2","a2","2"));
@@ -35,14 +35,17 @@ public class LibraryTest {
         menuItems.add("Return a book");
         menuItems.add("List movies");
         menuItems.add("Check out a movie");
+        menuItems.add("View user information");
         menu = new MainMenu(menuItems);
 
         users = new ArrayList<UserAccount>();
-        users.add(new UserAccount("123","abcd"));
+        users.add(new UserAccount("123","abcd","11@163.com","address1","123456"));
 
         consoleTestHelper = new ConsoleTestHelper();
 
         library = new Library(menu,books,movies, users,consoleTestHelper);
+        consoleTestHelper.setInput("123-abcd");
+        library.login();
     }
 
     private void print_list(ArrayList<Publication> publications) throws Exception{
@@ -114,16 +117,12 @@ public class LibraryTest {
     }
     @Test
     public void should_check_out_book_when_login() throws Exception{
-        consoleTestHelper.setInput("123-abcd");
-        library.login();
         consoleTestHelper.setInput("book1");
         library.excuteOptions(2);
         assertThat(consoleTestHelper.getOutput(),containsString("Thank you! Enjoy the book"));
     }
     @Test
     public void should_show_check_out_item() throws Exception{
-        consoleTestHelper.setInput("123-abcd");
-        library.login();
         consoleTestHelper.setInput("book1");
         library.excuteOptions(2);
         checkOutInfo = library.getCheckOutInfo();
@@ -136,6 +135,17 @@ public class LibraryTest {
         library.excuteOptions(menuItems.size());
         assertThat(consoleTestHelper.getOutput(),containsString("Quit"));
 
+    }
+    @Test
+    public void should_show_user_info() throws Exception{
+        library.excuteOptions(6);
+        assertThat(consoleTestHelper.getOutput(),containsString(users.get(0).getUserInfo()));
+    }
+    @Test
+    public void should_not_show_user_info_when_not_login() throws Exception{
+        library.logout();
+        library.excuteOptions(6);
+        assertThat(consoleTestHelper.getOutput(),containsString("Please login to check and return books"));
     }
 
 
