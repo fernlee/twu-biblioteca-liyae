@@ -90,6 +90,16 @@ public class LibraryTest {
 
     }
     @Test
+    public void should_check_out_movie() throws Exception{
+        consoleTestHelper.setInput("movie1");
+        library.excuteOptions(5);
+        assertThat(consoleTestHelper.getOutput(),containsString("Thank you! Enjoy the movie"));
+    }
+    @Test
+    public void Test() throws Exception{
+
+    }
+    @Test
     public void should_quit() throws Exception{
         library.excuteOptions(menuItems.size());
         assertThat(consoleTestHelper.getOutput(),containsString("Quit"));

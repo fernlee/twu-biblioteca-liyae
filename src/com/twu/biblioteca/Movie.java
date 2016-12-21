@@ -6,6 +6,7 @@ public class Movie implements Publication {
     private String director;
     private int rating;
     private boolean isCheckOut;
+    private String type;
 
     public Movie(String name, String year, String director, int rating) {
         this.name = name;
@@ -13,6 +14,7 @@ public class Movie implements Publication {
         this.director = director;
         this.rating = rating;
         isCheckOut = false;
+        type = "movie";
     }
 
     @Override
@@ -41,5 +43,9 @@ public class Movie implements Publication {
     @Override
     public String getName(){
         return name;
+    }
+    @Override
+    public String getType(){
+        return type;
     }
 }

@@ -33,7 +33,7 @@ public class Library {
             print_list(books);
         }
         else if (option == 2){
-            check_out_book(console.getInput());
+            check_out(console.getInput(), books);
         }
         else if (option == 3){
             return_book(console.getInput());
@@ -42,26 +42,29 @@ public class Library {
             print_list(movies);
         }
         else if (option == 5){
-            check_out_book(console.getInput());
+            check_out(console.getInput(), movies);
         }
 
     }
-    public void check_out_book(String title){
-        for (Publication book:books
+
+
+    private void check_out(String title, ArrayList<Publication> publications) {
+        String type = publications.get(0).getType();
+        for (Publication pub: publications
              ) {
-            if (book.getName().equals(title) && (book.checkOut())){
-                console.println("Thank you! Enjoy the book");
+            if (pub.getName().equals(title) && (pub.checkOut())){
+                console.println("Thank you! Enjoy the "+type);
                 return;
             }
         }
-        console.println("That book is not available.");
+        console.println("That " + type + " is not available.");
     }
 
     public void return_book(String title){
         for (Publication book:books
                 ) {
             if (book.getName().equals(title) && (book.returnToLib())){
-                console.println("Thank you for returning the book.");
+                console.println("Thank you for returning the book");
                 return;
             }
         }

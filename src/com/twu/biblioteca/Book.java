@@ -5,12 +5,14 @@ public class Book implements Publication{
     private String author;
     private String year_published;
     private boolean isCheckOut;
+    private String type;
 
     public Book(String name, String author, String year_published) {
         this.name = name;
         this.author = author;
         this.year_published = year_published;
         isCheckOut = false;
+        type = "book";
     }
 
     public String getName() {
@@ -47,5 +49,9 @@ public class Book implements Publication{
     @Override
     public boolean isCheckOut(){
         return isCheckOut;
+    }
+    @Override
+    public String getType(){
+        return type;
     }
 }

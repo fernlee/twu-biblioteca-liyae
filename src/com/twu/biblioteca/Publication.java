@@ -7,4 +7,5 @@ public interface Publication {
     boolean checkOut();
     boolean returnToLib();
     String getName();
+    String getType();
 }
