@@ -15,6 +15,7 @@ public class BibliotecaApp {
         Library library = new Library(menu,books, movies, users, consoleTestHelper);
         int option = 0;
         library.welcome();
+        library.login();
         System.out.println(menu.getMenu());
         do {
             option = consoleTestHelper.getInteger();
@@ -28,6 +29,10 @@ public class BibliotecaApp {
         menuItems.add("List books");
         menuItems.add("Check out a book");
         menuItems.add("Return a book");
+        menuItems.add("List movies");
+        menuItems.add("Check out a movie");
+        menuItems.add("View user information");
+        menuItems.add("Viem check-out items");
         return new MainMenu(menuItems);
     }
 
@@ -50,7 +55,7 @@ public class BibliotecaApp {
 
     private static ArrayList<UserAccount> initUsers(){
         ArrayList<UserAccount> users = new ArrayList<UserAccount>();
-        users.add(new UserAccount("123","abcd"));
+        users.add(new UserAccount("123","abcd","11@163.com","address1","123456"));
         return users;
     }
 

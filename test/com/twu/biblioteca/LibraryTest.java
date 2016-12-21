@@ -130,12 +130,7 @@ public class LibraryTest {
         assertThat(consoleTestHelper.getOutput(),containsString("123"));
         assertThat(consoleTestHelper.getOutput(),containsString(checkOutInfo.showCheckOutItems()));
     }
-    @Test
-    public void should_quit() throws Exception{
-        library.excuteOptions(menuItems.size());
-        assertThat(consoleTestHelper.getOutput(),containsString("Quit"));
 
-    }
     @Test
     public void should_show_user_info() throws Exception{
         library.excuteOptions(6);
@@ -146,6 +141,11 @@ public class LibraryTest {
         library.logout();
         library.excuteOptions(6);
         assertThat(consoleTestHelper.getOutput(),containsString("Please login to check and return books"));
+    }
+    @Test
+    public void should_quit() throws Exception{
+        library.excuteOptions(menuItems.size());
+        assertThat(consoleTestHelper.getOutput(),containsString("Quit"));
     }
 
 

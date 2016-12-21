@@ -27,7 +27,7 @@ public class Library {
     }
 
     public boolean login() throws IOException {
-        console.println("Please log in with the format xxx-xxxx!");
+        console.println("Please log in with the format xxx-xxxx!(123-abcd)");
         String str[] = console.getInput().split("-");
         String libnum = str[0];
         String pwd = str[1];
@@ -58,25 +58,33 @@ public class Library {
             System.exit(0);
         }
         else if (option == 1) {
+            console.println("Books:");
             print_list(books);
         }
         else if (option == 4) {
+            console.println("Movies:");
             print_list(movies);
         }
         if (isLogin) {
            if (option == 2) {
+                console.println("Please input the name of the book to check out");
                 check_out(console.getInput(), books);
             } else if (option == 3) {
+                console.println("Please input the name of the book to return");
                 return_item(console.getInput(),books);
             } else if (option == 5) {
+                console.println("Please input the name of the movie to check out");
                 check_out(console.getInput(), movies);
             }
             else if (option == 6){
+               console.println("This is your information");
                show_user_info();
+           }else if (option == 7){
+                show_check_out_list();
            }
         }
         else console.println("Please login to check and return books");
-
+        console.println("Choose an Option:");
     }
 
     public void show_check_out_list(){
