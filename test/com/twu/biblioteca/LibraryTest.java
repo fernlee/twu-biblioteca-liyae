@@ -16,6 +16,7 @@ public class LibraryTest {
     private ArrayList<String> menuItems;
     private ConsoleTestHelper consoleTestHelper;
     private Library library;
+    private CheckOutInfo checkOutInfo;
     @Before
     public void setup(){
         books = new ArrayList<Publication>();
@@ -110,6 +111,25 @@ public class LibraryTest {
     public void should_not_login() throws Exception{
         consoleTestHelper.setInput("123-addd");
         assertEquals(library.login(),false);
+    }
+    @Test
+    public void should_check_out_book_when_login() throws Exception{
+        consoleTestHelper.setInput("123-abcd");
+        library.login();
+        consoleTestHelper.setInput("book1");
+        library.excuteOptions(2);
+        assertThat(consoleTestHelper.getOutput(),containsString("Thank you! Enjoy the book"));
+    }
+    @Test
+    public void should_show_check_out_item() throws Exception{
+        consoleTestHelper.setInput("123-abcd");
+        library.login();
+        consoleTestHelper.setInput("book1");
+        library.excuteOptions(2);
+        checkOutInfo = library.getCheckOutInfo();
+        library.show_check_out_list();
+        assertThat(consoleTestHelper.getOutput(),containsString("123"));
+        assertThat(consoleTestHelper.getOutput(),containsString(checkOutInfo.showCheckOutItems()));
     }
     @Test
     public void should_quit() throws Exception{

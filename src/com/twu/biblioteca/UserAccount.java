@@ -9,8 +9,11 @@ public class UserAccount {
         this.pwd = pwd;
     }
 
+    public String getLibnum(){
+        return libnum;
+    }
+
     public boolean isAuthentic(String libnum,String pwd){
-        if (this.libnum.equals(libnum)&&this.pwd.equals(pwd)) return true;
-        return false;
+        return this.libnum.equals(libnum) && this.pwd.equals(pwd);
     }
 }

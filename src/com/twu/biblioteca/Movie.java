@@ -7,6 +7,7 @@ public class Movie implements Publication {
     private int rating;
     private boolean isCheckOut;
     private String type;
+    public static final int UNRATED = 0;
 
     public Movie(String name, String year, String director, int rating) {
         this.name = name;
