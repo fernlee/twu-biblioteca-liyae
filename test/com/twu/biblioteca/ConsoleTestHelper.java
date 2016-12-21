@@ -1,24 +1,20 @@
 package com.twu.biblioteca;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+
 
 public class ConsoleTestHelper implements ConsoleWrapper{
     private StringBuilder output = new StringBuilder();
     private String input;
     @Override
     public void println(String str){
-        System.out.println(str);
         output.append(str).append("\n");
     }
     @Override
-    public int getInteger() throws IOException {
-        BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
-        return Integer.parseInt(inputReader.readLine());
+    public int getInteger() {
+        return Integer.parseInt(input);
     }
     @Override
-    public String getInput() throws IOException{
+    public String getInput(){
        return input;
     }
     @Override
