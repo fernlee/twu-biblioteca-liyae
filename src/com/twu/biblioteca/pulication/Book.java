@@ -7,7 +7,6 @@ public class Book extends Publication {
         type = "book";
     }
 
-    @Override
-    public String getDetails(){ return getName() + " " + getName() + " " + getYear_published(); }
+    public String toString(){ return getName() + " " + getName() + " " + getYear_published(); }
 
 }

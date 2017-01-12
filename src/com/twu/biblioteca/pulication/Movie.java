@@ -10,8 +10,9 @@ public class Movie extends Publication{
         this.rating = rating;
     }
 
-    public String getDetails() {
+    public String toString() {
         return name + " " + year_published + " " + author + " " + rating;
     }
+
 
 }

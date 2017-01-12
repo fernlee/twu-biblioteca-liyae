@@ -26,8 +26,6 @@ public abstract class Publication {
         return year_published;
     }
 
-    public abstract String getDetails();
-
     public boolean checkOut(){
         if (isCheckOut) return false;
         else{
