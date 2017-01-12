@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 public class MainMenu {
     private ArrayList<String> menuItems = new ArrayList<String>();
-    private int numberOfOptions;
     public MainMenu(ArrayList<String> menuItems) {
         this.menuItems = menuItems;
         menuItems.add("Quit");

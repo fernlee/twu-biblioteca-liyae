@@ -1,11 +1,7 @@
 package com.twu.biblioteca;
 
 public class WelcomeMessage {
-    private String msg;
-    public WelcomeMessage(String msg) {
-        this.msg = msg;
-    }
-    public String showWelcomeMsg(){
-        return msg;
+    public static void showWelcomeMsg(){
+        System.out.println("Welcome to Biblioteca!");
     }
 }

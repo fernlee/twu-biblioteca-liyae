@@ -21,7 +21,6 @@ public class ConsoleTestHelper implements ConsoleWrapper{
     public String getOutput(){
         return output.toString();
     }
-
     @Override
     public void setInput(String str) {
         input = str;
