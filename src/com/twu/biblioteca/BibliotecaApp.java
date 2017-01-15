@@ -30,16 +30,7 @@ public class BibliotecaApp {
     }
 
     private static MainMenu initMenu(){
-        ArrayList<String> menuItems = new ArrayList<String>();
-        menuItems.add("Log in");
-        menuItems.add("List books");
-        menuItems.add("Check out a book");
-        menuItems.add("Return a book");
-        menuItems.add("List movies");
-        menuItems.add("Check out a movie");
-        menuItems.add("Return a movie");
-        menuItems.add("View user information");
-        menuItems.add("Viem check-out items (only available for librarian)");
+        ArrayList<String> menuItems = Options.getMeunItems();
         return new MainMenu(menuItems);
     }
 

@@ -4,6 +4,7 @@ abstract public class User {
     protected String libnum;
     protected String pwd;
     protected boolean login;
+    private String name;
 
     public User(String libnum, String pwd) {
         this.libnum = libnum;
@@ -22,4 +23,7 @@ abstract public class User {
     public void logout(){login = false;}
     abstract public boolean isLibrarian();
 
+    public String getName() {
+        return name;
+    }
 }

@@ -8,7 +8,8 @@ public class Librarian extends User{
     }
     public void showCheckOutList(ArrayList<Customer> customers){
         for (Customer customer : customers){
-                customer.showCheckOutItems();
+            System.out.println(customer.getName());
+            customer.showCheckOutItems();
         }
     }
     @Override

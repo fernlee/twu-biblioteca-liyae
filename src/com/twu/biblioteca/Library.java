@@ -17,11 +17,6 @@ public class Library {
     private ConsoleWrapper console;
     private Customer customer;
     private Librarian librarian;
-    private boolean isLogin;
-
-    public Library(){
-
-    }
 
     public Library(MainMenu mainMenu,Publications books, Publications movies, ConsoleWrapper consoleTestHelper) {
 
@@ -29,7 +24,6 @@ public class Library {
         this.books = books;
         this.console= consoleTestHelper;
         this.mainMenu = mainMenu;
-        isLogin = false;
     }
 
     public void excuteOptions(int option) throws IOException{
@@ -56,7 +50,6 @@ public class Library {
                 console.println("Sorry, wrong library number or password");
             }
             else {
-                isLogin = true;
                if(currentUser.isLibrarian()) {
                    librarian = (Librarian)currentUser;
                    if (customer != null) customer.logout();
@@ -95,17 +88,25 @@ public class Library {
         }
         console.println("Choose an Option:");
     }
-//
-//    public void show_check_out_list(){
-//        console.println(checkOutInfo.getUserID() + " has borrowed:\n" + checkOutInfo.showCheckOutItems());
-//    }
 
-//    public CheckOutInfo getCheckOutInfo(){
-//        return checkOutInfo;
-//    }
-//    private void show_user_info(){
-//       console.println(currentUser.getUserInfo());
-//    }
+    public void setCurrentUser(User user){
+        if (user != null) {
+            if (user.isLibrarian()) librarian = (Librarian) user;
+            else customer = (Customer) user;
+        }
+        else {
+            customer = null;
+            librarian = null;
+        }
 
+    }
+
+    public User getCurrentUser(){
+        if (customer != null && customer.isLogin())
+            return customer;
+        else if (librarian!=null && librarian.isLogin())
+            return librarian;
+        return null;
+    }
 
 }

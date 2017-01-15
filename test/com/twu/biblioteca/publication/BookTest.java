@@ -34,6 +34,7 @@ public class BookTest {
         book.checkOut();
         assertEquals(book.returnToLib(),true);
     }
+
     @Test
     public void should_not_return_to_library_when_not_checked(){
         assertEquals(book.returnToLib(),false);

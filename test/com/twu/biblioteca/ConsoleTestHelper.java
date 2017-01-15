@@ -13,7 +13,6 @@ public class ConsoleTestHelper implements ConsoleWrapper{
     public int getInteger() {
         return Integer.parseInt(input);
     }
-    @Override
     public String getInput(){
        return input;
     }
